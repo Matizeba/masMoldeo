@@ -1,0 +1,370 @@
+/* ==========================================================================
+   CSS PERSONALIZADO PARA MÁS MOLDEO
+   Estilo Premium - Universo de Estrellas & Detalles Dorados
+   ========================================================================== */
+
+:root {
+    --color-oscuro: #111111;         /* Negro mate elegante */
+    --color-oro: #c5a059;            /* Dorado del logo */
+    --color-oro-brillante: #e5c07b;  /* Dorado claro para contrastes */
+    --color-fondo: #090a0f;          /* Espacio negro profundo */
+    --color-gris-suave: #eae6e1;
+}
+
+/* --- ESTILOS GENERALES Y UNIFICACIÓN DE FONDO --- */
+body {
+    background-color: transparent !important;
+    color: #ffffff; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- MENÚ DE NAVEGACIÓN TRANSPARENTE & GLASSMORPHISM --- */
+.navbar-custom {
+    background-color: rgba(9, 10, 15, 0.75) !important; /* Oscuro traslúcido premium */
+    backdrop-filter: blur(15px) saturate(180%); /* Difuminado moderno estilo iOS */
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.15); /* Borde dorado ultra fino */
+    padding: 12px 0;
+    transition: all 0.3s ease;
+}
+
+/* Mini logo elegante al lado del título en la barra */
+.navbar-logo-mini {
+    height: 35px;
+    width: 35px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--color-oro);
+}
+
+.navbar-custom .brand-text {
+    color: var(--color-oro) !important;
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(197, 160, 89, 0.2);
+}
+
+.navbar-custom .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 8px 16px !important;
+    margin: 0 5px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+    color: #ffffff !important;
+    background-color: rgba(197, 160, 89, 0.15); /* Resalte dorado traslúcido */
+}
+
+/* Botón de Menú Móvil Personalizado (Hamburguesa minimalista) */
+.custom-toggler {
+    border: none !important;
+    background: transparent !important;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 24px;
+    height: 20px;
+}
+
+.custom-toggler:focus {
+    box-shadow: none;
+}
+
+.toggler-icon-bar {
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-oro);
+    border-radius: 2px;
+    transition: all 0.2s ease-in-out;
+}
+
+/* --- HERO SECTION (RESPONSIVO Y EQUILIBRADO) --- */
+.hero-section {
+    background-color: transparent !important;
+    padding-top: 6rem !important; /* Espacio para que no se pegue a la navbar sticky */
+    padding-bottom: 4rem !important;
+    overflow: hidden;
+}
+
+/* Logo adaptable: Grande e imponente en PC, controlado en pantallas pequeñas */
+.logo-hero-compact {
+    width: 100% !important;
+    max-width: 320px !important; /* Tamaño óptimo para que luzca increíble sin desbordar */
+    height: auto !important; 
+    aspect-ratio: 1 / 1; /* Forza la proporción cuadrada perfecta */
+    object-fit: cover;
+    border-radius: 25px; /* Bordes redondeados premium */
+    border: 3px solid var(--color-oro); /* Borde dorado nítido */
+    box-shadow: 0 10px 35px rgba(197, 160, 89, 0.35); /* Destello dorado de fondo */
+    transition: transform 0.3s ease;
+    background-color: var(--color-oscuro);
+}
+
+.logo-hero-compact:hover {
+    transform: scale(1.03);
+}
+
+/* Tipografía del Hero Fluida (Se adaptan solas a cualquier resolución) */
+.hero-title {
+    font-size: calc(2.2rem + 1.5vw) !important;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+.hero-subtitle {
+    font-size: calc(0.9rem + 0.3vw) !important;
+    letter-spacing: 5px !important;
+}
+
+.hero-desc {
+    font-size: calc(1rem + 0.2vw) !important;
+    line-height: 1.6;
+    max-width: 650px;
+}
+
+.divider-gold {
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-oro);
+    border-radius: 2px;
+}
+
+.text-light-muted {
+    color: #cccccc !important;
+}
+
+/* --- BOTONES DE ACCIÓN --- */
+.btn-gold {
+    background-color: var(--color-oscuro);
+    color: var(--color-oro);
+    border: 2px solid var(--color-oro);
+    transition: all 0.3s ease;
+    font-size: 1.1rem !important;
+    padding: 12px 40px !important;
+    letter-spacing: 1px;
+}
+
+.btn-gold:hover {
+    background-color: var(--color-oro);
+    color: var(--color-oscuro);
+    box-shadow: 0 5px 20px rgba(197, 160, 89, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-dark-gold {
+    background-color: var(--color-oro);
+    color: #000000 !important;
+    border: 1px solid var(--color-oro);
+    transition: all 0.3s ease;
+}
+
+.btn-dark-gold:hover {
+    background-color: var(--color-oro-brillante);
+    border-color: var(--color-oro-brillante);
+    box-shadow: 0 5px 15px rgba(229, 192, 123, 0.3);
+    transform: translateY(-1px);
+}
+
+/* --- FILTROS DE SECCIONES (CONTRALUZ EN OSCURO) --- */
+.btn-filtro {
+    color: #cccccc !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    transition: all 0.3s ease;
+    border-radius: 20px;
+    padding: 6px 16px;
+    text-transform: capitalize;
+}
+
+.btn-filtro:hover {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: var(--color-oro) !important;
+}
+
+.btn-filtro.active {
+    color: #000000 !important;
+    background-color: var(--color-oro) !important;
+    border-color: var(--color-oro) !important;
+    font-weight: bold;
+    box-shadow: 0 0 12px rgba(197, 160, 89, 0.3);
+}
+
+/* --- TARJETAS DE PRODUCTOS PREMIUM (MODERNO OSCURO) --- */
+#catalogo {
+    background-color: transparent !important;
+}
+
+#catalogo h2 {
+    color: #ffffff !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.card-producto {
+    border: 1px solid rgba(255, 215, 0, 0.15) !important;
+    background-color: rgba(20, 22, 30, 0.75) !important; /* Fondo oscuro traslúcido */
+    backdrop-filter: blur(8px); /* Deja ver las estrellas pasando por detrás */
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    position: relative;
+}
+
+.card-producto:hover {
+    transform: translateY(-10px);
+    border-color: var(--color-oro) !important;
+    box-shadow: 0 15px 35px rgba(197, 160, 89, 0.15) !important;
+}
+
+.card-producto img {
+    height: 290px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.card-producto:hover img {
+    transform: scale(1.06);
+}
+
+.card-producto .card-title {
+    color: #ffffff !important;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.card-producto .card-text {
+    color: #cccccc !important;
+    font-size: 0.9rem;
+}
+
+.card-producto p.text-gold {
+    color: var(--color-oro-brillante) !important;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-producto p.fs-4 {
+    color: #ffffff !important; /* Precio en blanco nítido */
+    font-weight: 800;
+}
+
+/* Badge de Sección / Agotado */
+.badge-tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--color-oro-brillante);
+    border: 1px solid var(--color-oro);
+    padding: 5px 14px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 20px;
+    z-index: 10;
+    letter-spacing: 1px;
+}
+
+/* --- FONDO DINÁMICO DE ESTRELLAS --- */
+#stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+    background: radial-gradient(ellipse at bottom, #10121a 0%, #050609 100%); 
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: twinkle var(--duration, 3s) infinite ease-in-out;
+    opacity: 0;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: var(--max-opacity, 0.8);
+        transform: scale(1.2);
+        box-shadow: 0 0 8px rgba(255, 215, 0, 0.4); 
+    }
+}
+
+/* --- EFECTO DE ZOOM Y CAPA EN IMÁGENES AL PASAR EL MOUSE --- */
+.img-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.img-wrapper img {
+    width: 100%;
+    transition: transform 0.5s ease;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.img-wrapper:hover .image-overlay {
+    opacity: 1;
+}
+
+.img-wrapper:hover img {
+    transform: scale(1.05);
+}
+
+/* --- ESTILO PARA EL MODAL EMERGENTE (IMAGEN EN GRANDE) --- */
+.border-gold-modal {
+    border: 2px solid var(--color-oro) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
+}
+
+.modal-img-preview {
+    max-height: 500px;
+    object-fit: contain;
+    width: 100%;
+    background-color: #000; 
+}
+
+/* --- MEDIA QUERIES PARA RESPONSIVO (MÓVILES Y S24) --- */
+@media (max-width: 767.98px) {
+    .hero-section {
+        padding-top: 5rem !important;
+        padding-bottom: 3rem !important;
+    }
+    
+    .logo-hero-compact {
+        max-width: 220px !important; /* Tamaño ideal y controlado en teléfonos */
+        margin-bottom: 0.5rem;
+    }
+    
+    .navbar-custom {
+        padding: 10px 0;
+    }
+}
