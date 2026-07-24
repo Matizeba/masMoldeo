@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MÁS MOLDEO - Fajas y Ropa de Moldeo</title>
+    
+    <!-- PRECARGA DE RECURSOS CRÍTICOS (Optimización de velocidad) -->
+    <link rel="preload" href="img/logo.jpg" as="image">
+    
     <!-- CSS de Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Estilos Personalizados Ordenados -->
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- Iconos de Bootstrap (Necesarios para las flechas de zoom o navegación) -->
+    
+    <!-- Estilos Personalizados con Versionado para romper Caché (?v=1.0) -->
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+    
+    <!-- Iconos de Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
@@ -20,7 +26,6 @@
     <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <!-- Mini logo en la navbar para darle más categoría -->
                 <img src="img/logo.jpg" alt="MM" class="navbar-logo-mini me-2" onerror="this.style.display='none'">
                 <span class="brand-text">MÁS MOLDEO</span>
             </a>
@@ -38,16 +43,13 @@
         </div>
     </nav>
 
-   
-    <!-- SECCIÓN BIENVENIDA (HERO) OPTIMIZADA Y EQUILIBRADA -->
+    <!-- SECCIÓN BIENVENIDA (HERO) -->
     <div class="hero-section d-flex align-items-center">
         <div class="container">
             <div class="row align-items-center text-center text-md-start g-4">
-                <!-- Lado Izquierdo: Contenedor del Logo (Máximo 40% del ancho en PC) -->
                 <div class="col-12 col-md-5 col-lg-4 d-flex justify-content-center">
                     <img src="img/logo.jpg" alt="Logo MÁS MOLDEO" class="logo-hero-compact img-fluid" onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=400'">
                 </div>
-                <!-- Lado Derecho: Textos y Botón con espacio suficiente -->
                 <div class="col-12 col-md-7 col-lg-8 ps-md-4">
                     <h1 class="hero-title fw-bold text-white mb-2">MÁS MOLDEO</h1>
                     <p class="hero-subtitle text-uppercase text-gold tracking-wide mb-3">Fajas y Ropa de Moldeo</p>
@@ -67,14 +69,14 @@
             <div class="divider-gold mx-auto mt-2 mb-4"></div>
         </div>
 
-        <!-- FILTROS POR SECCIÓN (Se generan dinámicamente) -->
+        <!-- FILTROS POR SECCIÓN (Categorías) -->
         <div class="row mb-5">
             <div class="col-12 text-center" id="contenedor-filtros">
                 <button class="btn btn-filtro active me-2 mb-2" onclick="filtrarProductos('todos', this)">Todos</button>
             </div>
         </div>
 
-        <!-- REJILLA DE PRODUCTOS (Se cargan dinámicamente desde Sheets) -->
+        <!-- REJILLA DE PRODUCTOS (Carga completa por categoría) -->
         <div class="row g-4" id="contenedor-productos">
             <div class="col-12 text-center py-5">
                 <div class="spinner-border text-warning" role="status">
@@ -83,12 +85,9 @@
                 <p class="mt-2 text-muted">Cargando la colección de MÁS MOLDEO...</p>
             </div>
         </div>
-
-        <!-- CONTENEDOR DE LA BARRA DE PAGINACIÓN (Agregado perfectamente aquí) -->
-        <div id="pagination-container" class="mt-5"></div>
     </div>
 
-    <!-- VENTANA EMERGENTE (MODAL) ADAPTADA CON SOPORTE PARA CARRUSEL DINÁMICO -->
+    <!-- VENTANA EMERGENTE (MODAL) -->
     <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content bg-dark text-white border-gold-modal">
@@ -96,7 +95,6 @@
                     <h5 class="modal-title fw-bold" id="modalProductoNombre">Nombre del Producto</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
-                <!-- El contenedor de abajo cambia por completo dinámicamente en JavaScript -->
                 <div class="modal-body text-center p-0" id="modalBodyContenedor">
                     <img id="modalProductoImagen" src="" class="img-fluid modal-img-preview" alt="Vista del producto">
                 </div>
@@ -112,20 +110,14 @@
     <!-- JS de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- PROGRAMACIÓN DE LA BASE DE DATOS -->
+    <!-- PROGRAMACIÓN DE LA BASE DE DATOS Y LÓGICA -->
     <script>
-        // Enlace del CSV de Google Sheets
         const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR5botmm1BIxNPXipFUBPSrVhO7QO53qI99fvk3cG90VWyq91KcC5oeApL8b58eLWqQ2husNsXB6C92/pub?output=csv";
-        
-        // Número de WhatsApp
         const WHATSAPP_NUMERO = "59162165899"; 
 
-        let productosGlobales = []; // Base de datos completa
-        let productosFiltrados = []; // Productos después de aplicar un filtro
-        let paginaActual = 1;
-        const productosPorPagina = 6; // <-- Aquí controlas cuántos productos se ven por página
+        let productosGlobales = []; 
+        let productosFiltrados = []; 
 
-        // Función para leer el CSV y convertirlo a objetos limpios
         function parseCSV(text) {
             const lineas = text.split("\n");
             const headers = lineas[0].split(",").map(h => h.trim());
@@ -141,7 +133,6 @@
                     obj[header] = valor;
                 });
                 
-                // Solo agregar si tiene al menos un nombre para evitar filas fantasma
                 if (obj.Nombre) {
                     resultados.push(obj);
                 }
@@ -149,7 +140,6 @@
             return resultados;
         }
 
-        // Cargar los datos al iniciar la página (Evitando la caché de Google)
         async function cargarCatalogo() {
             try {
                 const forzarFresco = new Date().getTime(); 
@@ -157,10 +147,10 @@
                 const csvText = await response.text();
                 
                 productosGlobales = parseCSV(csvText);
-                productosFiltrados = [...productosGlobales]; // Al inicio, filtrados es igual a todos
+                productosFiltrados = [...productosGlobales]; 
                 
                 generarFiltros(productosGlobales);
-                cambiarPagina(1); // Muestra la primera página del catálogo
+                renderizarProductos(); 
                 
             } catch (error) {
                 console.error("Error cargando la base de datos:", error);
@@ -173,7 +163,6 @@
             }
         }
 
-        // Generar botones de categorías dinámicamente
         function generarFiltros(productos) {
             const contenedor = document.getElementById('contenedor-filtros');
             const secciones = new Set();
@@ -186,32 +175,23 @@
                 const boton = document.createElement('button');
                 boton.className = "btn btn-filtro me-2 mb-2";
                 boton.textContent = seccion;
-                // Escapamos comillas simples para evitar el error de "Body's Moldeadores"
                 const seccionEscapada = seccion.replace(/'/g, "\\'");
                 boton.setAttribute('onclick', `filtrarProductos('${seccionEscapada}', this)`);
                 contenedor.appendChild(boton);
             });
         }
 
-        // Lógica para segmentar las páginas y renderizar
-        function cambiarPagina(pagina) {
-            paginaActual = pagina;
+        // Renderizado directo de TODOS los productos pertenecientes a la categoría seleccionada
+        function renderizarProductos() {
             const contenedor = document.getElementById('contenedor-productos');
             contenedor.innerHTML = "";
 
             if (productosFiltrados.length === 0) {
                 contenedor.innerHTML = `<div class="col-12 text-center py-5 text-muted"><p>No hay prendas registradas en esta sección por el momento.</p></div>`;
-                renderizarBotonesPaginacion(0);
                 return;
             }
 
-            // Calcular trozo de la lista que toca mostrar
-            const indiceInicio = (pagina - 1) * productosPorPagina;
-            const indiceFin = indiceInicio + productosPorPagina;
-            const subListaProductos = productosFiltrados.slice(indiceInicio, indiceFin);
-
-            // Pintar los productos de esta página
-            subListaProductos.forEach((p) => {
+            productosFiltrados.forEach((p) => {
                 const imagenesLista = p.Imagen ? p.Imagen.split(",") : [];
                 const fotoUrl = imagenesLista[0] && imagenesLista[0].trim().startsWith('http') 
                     ? imagenesLista[0].trim() 
@@ -227,15 +207,15 @@
                     ? `<button class="btn btn-secondary w-100 rounded-pill py-2 text-uppercase fw-bold" disabled>Temporalmente Agotado</button>`
                     : `<a href="${waLink}" target="_blank" class="btn btn-dark-gold w-100 rounded-pill py-2 text-uppercase fw-bold">Comprar Ahora</a>`;
 
-                // Pasamos el nombre del producto de forma segura para solucionar el bug de los modales cruzados
                 const nombreEscapado = p.Nombre.replace(/"/g, '&quot;').replace(/'/g, "\\'");
 
+                // Incluye loading="lazy" para maximizar la velocidad en celulares
                 const tarjetaHTML = `
                     <div class="col-12 col-md-6 col-lg-4 producto-item">
                         <div class="card h-100 card-producto shadow-sm">
                             ${badgeTag}
                             <div class="img-wrapper" onclick="abrirModalDetalle('${nombreEscapado}')" style="cursor: pointer;">
-                                <img src="${fotoUrl}" class="card-img-top" alt="${p.Nombre}" onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=400'">
+                                <img src="${fotoUrl}" class="card-img-top" alt="${p.Nombre}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=400'">
                                 <div class="image-overlay">
                                     <span class="text-white fw-semibold"><i class="bi bi-zoom-in"></i> Ver en grande</span>
                                 </div>
@@ -254,66 +234,9 @@
                 `;
                 contenedor.innerHTML += tarjetaHTML;
             });
-
-            // Actualizar la botonera de paginación abajo
-            const totalPaginas = Math.ceil(productosFiltrados.length / productosPorPagina);
-            renderizarBotonesPaginacion(totalPaginas);
         }
 
-        // Crear los botones dinámicos de las páginas
-        function renderizarBotonesPaginacion(totalPaginas) {
-            const contenedor = document.getElementById('pagination-container');
-            if (!contenedor) return;
-            contenedor.innerHTML = "";
-
-            if (totalPaginas <= 1) return; // Si todo entra en una hoja, ocultamos la barra
-
-            const barra = document.createElement('div');
-            barra.className = 'pagination-bar';
-
-            // Botón Anterior (<)
-            const btnPrev = document.createElement('button');
-            btnPrev.innerHTML = '&lt;';
-            btnPrev.disabled = paginaActual === 1;
-            btnPrev.onclick = () => {
-                if (paginaActual > 1) {
-                    cambiarPagina(paginaActual - 1);
-                    window.scrollTo({ top: document.getElementById('contenedor-filtros').offsetTop - 20, behavior: 'smooth' });
-                }
-            };
-            barra.appendChild(btnPrev);
-
-            // Botones Numéricos (1, 2, 3...) -> ¡Corregido totalPaginas aquí!
-            for (let i = 1; i <= totalPaginas; i++) {
-                const btnNum = document.createElement('button');
-                btnNum.innerText = i;
-                if (i === paginaActual) btnNum.classList.add('active');
-
-                btnNum.onclick = () => {
-                    cambiarPagina(i);
-                    window.scrollTo({ top: document.getElementById('contenedor-filtros').offsetTop - 20, behavior: 'smooth' });
-                };
-                barra.appendChild(btnNum);
-            }
-
-            // Botón Siguiente (>)
-            const btnNext = document.createElement('button');
-            btnNext.innerHTML = '&gt;';
-            btnNext.disabled = paginaActual === totalPaginas;
-            btnNext.onclick = () => {
-                if (paginaActual < totalPaginas) {
-                    cambiarPagina(paginaActual + 1);
-                    window.scrollTo({ top: document.getElementById('contenedor-filtros').offsetTop - 20, behavior: 'smooth' });
-                }
-            };
-            barra.appendChild(btnNext);
-
-            contenedor.appendChild(barra);
-        }
-
-        // Función para abrir el modal buscando por NOMBRE (Solución definitiva al cruce de fotos)
         function abrirModalDetalle(nombreProducto) {
-            // Buscamos la prenda exacta en toda la base de datos original
             const p = productosGlobales.find(prod => prod.Nombre === nombreProducto);
             if (!p) return;
 
@@ -335,7 +258,7 @@
                         indicadores += `<button type="button" data-bs-target="#carouselModal" data-bs-slide-to="${contadorValidas}" class="${contadorValidas === 0 ? 'active' : ''}" aria-current="${contadorValidas === 0 ? 'true' : 'false'}"></button>`;
                         diapositivas += `
                             <div class="carousel-item ${contadorValidas === 0 ? 'active' : ''}">
-                                <img src="${linkLimpio}" class="d-block w-100 modal-img-preview" alt="Vista ${contadorValidas + 1}" onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=400'">
+                                <img src="${linkLimpio}" class="d-block w-100 modal-img-preview" alt="Vista ${contadorValidas + 1}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=400'">
                             </div>
                         `;
                         contadorValidas++;
@@ -361,7 +284,7 @@
                     ? imagenesLista[0].trim() 
                     : 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=400';
                 
-                contenedorImagen.innerHTML = `<img id="modalProductoImagen" src="${fotoUnica}" class="img-fluid modal-img-preview" alt="Vista del producto" onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=400'">`;
+                contenedorImagen.innerHTML = `<img id="modalProductoImagen" src="${fotoUnica}" class="img-fluid modal-img-preview" alt="Vista del producto" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=400'">`;
             }
             
             const mensajeWa = encodeURIComponent(`¡Hola MÁS MOLDEO! Me interesa recibir más información sobre la prenda: *${p.Nombre}* (Precio: ${p.Precio} Bs.).`);
@@ -384,7 +307,6 @@
             miModal.show();
         }
 
-        // Función del filtro corregida
         function filtrarProductos(seccionSeleccionada, elemento) {
             const botones = document.querySelectorAll('.btn-filtro');
             botones.forEach(btn => btn.classList.remove('active'));
@@ -399,11 +321,15 @@
                 productosFiltrados = productosGlobales.filter(p => p.Seccion && p.Seccion.trim() === seccionSeleccionada);
             }
             
-            cambiarPagina(1); // Al filtrar, volvemos a la página 1 de la sección
+            renderizarProductos();
         }
 
-        // Función para crear el fondo de estrellas
+        // Creación inteligente de estrellas: Se desactiva automáticamente en pantallas < 768px
         function crearEstrellas() {
+            if (window.innerWidth < 768) {
+                return; 
+            }
+
             const contenedor = document.getElementById('stars-container');
             if(!contenedor) return;
             const numeroEstrellas = 80;
@@ -427,7 +353,6 @@
             }
         }
 
-        // Iniciar estrellas y catálogo juntos al cargar la web
         document.addEventListener("DOMContentLoaded", () => {
             crearEstrellas();
             cargarCatalogo();

@@ -4,31 +4,29 @@
    ========================================================================== */
 
 :root {
-    --color-oscuro: #111111;         /* Negro mate elegante */
-    --color-oro: #c5a059;            /* Dorado del logo */
-    --color-oro-brillante: #e5c07b;  /* Dorado claro para contrastes */
-    --color-fondo: #090a0f;          /* Espacio negro profundo */
+    --color-oscuro: #111111;         
+    --color-oro: #c5a059;            
+    --color-oro-brillante: #e5c07b;  
+    --color-fondo: #090a0f;          
     --color-gris-suave: #eae6e1;
 }
 
-/* --- ESTILOS GENERALES Y UNIFICACIÓN DE FONDO --- */
 body {
     background-color: transparent !important;
     color: #ffffff; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* --- MENÚ DE NAVEGACIÓN TRANSPARENTE & GLASSMORPHISM --- */
+/* MENÚ DE NAVEGACIÓN */
 .navbar-custom {
-    background-color: rgba(9, 10, 15, 0.75) !important; /* Oscuro traslúcido premium */
-    backdrop-filter: blur(15px) saturate(180%); /* Difuminado moderno estilo iOS */
+    background-color: rgba(9, 10, 15, 0.75) !important; 
+    backdrop-filter: blur(15px) saturate(180%); 
     -webkit-backdrop-filter: blur(15px) saturate(180%);
-    border-bottom: 1px solid rgba(197, 160, 89, 0.15); /* Borde dorado ultra fino */
+    border-bottom: 1px solid rgba(197, 160, 89, 0.15); 
     padding: 12px 0;
     transition: all 0.3s ease;
 }
 
-/* Mini logo elegante al lado del título en la barra */
 .navbar-logo-mini {
     height: 35px;
     width: 35px;
@@ -58,10 +56,9 @@ body {
 .navbar-custom .nav-link:hover,
 .navbar-custom .nav-link.active {
     color: #ffffff !important;
-    background-color: rgba(197, 160, 89, 0.15); /* Resalte dorado traslúcido */
+    background-color: rgba(197, 160, 89, 0.15); 
 }
 
-/* Botón de Menú Móvil Personalizado (Hamburguesa minimalista) */
 .custom-toggler {
     border: none !important;
     background: transparent !important;
@@ -85,24 +82,23 @@ body {
     transition: all 0.2s ease-in-out;
 }
 
-/* --- HERO SECTION (RESPONSIVO Y EQUILIBRADO) --- */
+/* HERO SECTION */
 .hero-section {
     background-color: transparent !important;
-    padding-top: 6rem !important; /* Espacio para que no se pegue a la navbar sticky */
+    padding-top: 6rem !important; 
     padding-bottom: 4rem !important;
     overflow: hidden;
 }
 
-/* Logo adaptable: Grande e imponente en PC, controlado en pantallas pequeñas */
 .logo-hero-compact {
     width: 100% !important;
-    max-width: 320px !important; /* Tamaño óptimo para que luzca increíble sin desbordar */
+    max-width: 320px !important; 
     height: auto !important; 
-    aspect-ratio: 1 / 1; /* Forza la proporción cuadrada perfecta */
+    aspect-ratio: 1 / 1; 
     object-fit: cover;
-    border-radius: 25px; /* Bordes redondeados premium */
-    border: 3px solid var(--color-oro); /* Borde dorado nítido */
-    box-shadow: 0 10px 35px rgba(197, 160, 89, 0.35); /* Destello dorado de fondo */
+    border-radius: 25px; 
+    border: 3px solid var(--color-oro); 
+    box-shadow: 0 10px 35px rgba(197, 160, 89, 0.35); 
     transition: transform 0.3s ease;
     background-color: var(--color-oscuro);
 }
@@ -111,7 +107,6 @@ body {
     transform: scale(1.03);
 }
 
-/* Tipografía del Hero Fluida (Se adaptan solas a cualquier resolución) */
 .hero-title {
     font-size: calc(2.2rem + 1.5vw) !important;
     letter-spacing: 2px;
@@ -140,7 +135,7 @@ body {
     color: #cccccc !important;
 }
 
-/* --- BOTONES DE ACCIÓN --- */
+/* BOTONES */
 .btn-gold {
     background-color: var(--color-oscuro);
     color: var(--color-oro);
@@ -172,7 +167,7 @@ body {
     transform: translateY(-1px);
 }
 
-/* --- FILTROS DE SECCIONES (CONTRALUZ EN OSCURO) --- */
+/* FILTROS */
 .btn-filtro {
     color: #cccccc !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
@@ -197,7 +192,7 @@ body {
     box-shadow: 0 0 12px rgba(197, 160, 89, 0.3);
 }
 
-/* --- TARJETAS DE PRODUCTOS PREMIUM (MODERNO OSCURO) --- */
+/* TARJETAS DE PRODUCTO */
 #catalogo {
     background-color: transparent !important;
 }
@@ -209,8 +204,8 @@ body {
 
 .card-producto {
     border: 1px solid rgba(255, 215, 0, 0.15) !important;
-    background-color: rgba(20, 22, 30, 0.75) !important; /* Fondo oscuro traslúcido */
-    backdrop-filter: blur(8px); /* Deja ver las estrellas pasando por detrás */
+    background-color: rgba(20, 22, 30, 0.75) !important; 
+    backdrop-filter: blur(8px); 
     border-radius: 20px;
     overflow: hidden;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
@@ -252,11 +247,10 @@ body {
 }
 
 .card-producto p.fs-4 {
-    color: #ffffff !important; /* Precio en blanco nítido */
+    color: #ffffff !important; 
     font-weight: 800;
 }
 
-/* Badge de Sección / Agotado */
 .badge-tag {
     position: absolute;
     top: 15px;
@@ -273,7 +267,7 @@ body {
     letter-spacing: 1px;
 }
 
-/* --- FONDO DINÁMICO DE ESTRELLAS --- */
+/* FONDO ESTRELLAS */
 #stars-container {
     position: fixed;
     top: 0;
@@ -305,7 +299,6 @@ body {
     }
 }
 
-/* --- EFECTO DE ZOOM Y CAPA EN IMÁGENES AL PASAR EL MOUSE --- */
 .img-wrapper {
     position: relative;
     overflow: hidden;
@@ -338,7 +331,6 @@ body {
     transform: scale(1.05);
 }
 
-/* --- ESTILO PARA EL MODAL EMERGENTE (IMAGEN EN GRANDE) --- */
 .border-gold-modal {
     border: 2px solid var(--color-oro) !important;
     border-radius: 20px !important;
@@ -352,7 +344,19 @@ body {
     background-color: #000; 
 }
 
-/* --- MEDIA QUERIES PARA RESPONSIVO (MÓVILES Y S24) --- */
+#carouselModal .carousel-indicators button {
+    background-color: var(--color-oro);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+#carouselModal .carousel-indicators button.active {
+    opacity: 1;
+    box-shadow: 0 0 8px var(--color-oro-brillante);
+}
+
 @media (max-width: 767.98px) {
     .hero-section {
         padding-top: 5rem !important;
@@ -360,7 +364,7 @@ body {
     }
     
     .logo-hero-compact {
-        max-width: 220px !important; /* Tamaño ideal y controlado en teléfonos */
+        max-width: 220px !important; 
         margin-bottom: 0.5rem;
     }
     
