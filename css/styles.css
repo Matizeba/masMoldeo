@@ -325,7 +325,7 @@ body {
 }
 
 /* ==========================================================================
-   FONDO Y MODAL (REFORZADO Y OPTIMIZADO PARA MÓVIL)
+   FONDO Y MODAL (ESTRUCTURA CORREGIDA PARA CARRUSEL)
    ========================================================================== */
 #stars-container {
     position: fixed;
@@ -365,31 +365,27 @@ body {
     overflow: hidden !important;
 }
 
-/* CARRUSEL Y NAVEGACIÓN EN MODAL */
+/* CARRUSEL FIJO NATURA DE BOOTSTRAP */
 #carouselModal {
     position: relative;
     width: 100%;
     overflow: hidden !important;
     background-color: #0d0e12;
-    touch-action: pan-y; /* Permite scroll vertical fluido sin bloquear el swipe */
 }
 
 #carouselModal .carousel-inner {
     position: relative;
     width: 100%;
     overflow: hidden !important;
-    display: flex;
 }
 
 #carouselModal .carousel-item {
-    transition: transform 0.3s ease-in-out !important;
     text-align: center;
     background-color: #0d0e12;
-    margin-right: 0 !important;
 }
 
 .modal-img-preview {
-    max-height: 52vh !important;
+    max-height: 48vh !important;
     width: 100% !important;
     object-fit: contain !important;
     display: block;
@@ -546,6 +542,6 @@ body {
     }
 
     .modal-img-preview {
-        max-height: 45vh !important; /* Mantiene la imagen y los botones 100% dentro de la pantalla del celular */
+        max-height: 45vh !important; /* Mantiene la imagen centrada y sin desbordes */
     }
 }
