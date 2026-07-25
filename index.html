@@ -5,19 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MÁS MOLDEO - Fajas y Ropa de Moldeo</title>
     
-    <!-- PRECARGA DE RECURSOS CRÍTICOS (Optimización de velocidad) -->
+    <!-- PRECARGA DE RECURSOS CRÍTICOS -->
     <link rel="preload" href="img/logo.jpg" as="image">
     
     <!-- CSS de Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Estilos Personalizados con Versionado para romper Caché (?v=1.0) -->
-    <link rel="stylesheet" href="css/styles.css?v=1.2">
+    <!-- Estilos Personalizados con Versionado para romper Caché (?v=1.3) -->
+    <link rel="stylesheet" href="css/styles.css?v=1.3">
     
     <!-- Iconos de Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
+
+    <!-- PANTALLA DE CARGA (LOADER SCREEN) -->
+    <div id="loader-screen">
+        <div class="loader-content text-center">
+            <div class="spinner-border text-warning mb-3" style="width: 3.5rem; height: 3.5rem;" role="status">
+                <span class="visually-hidden">Cargando...</span>
+            </div>
+            <h4 class="brand-text text-gold fw-bold mb-1">MÁS MOLDEO</h4>
+            <p class="text-light-muted small mb-0">Cargando catálogo exclusivo...</p>
+        </div>
+    </div>
 
     <!-- Fondo de Estrellas -->
     <div id="stars-container"></div>
@@ -76,14 +87,9 @@
             </div>
         </div>
 
-        <!-- REJILLA DE PRODUCTOS (Carga completa por categoría) -->
+        <!-- REJILLA DE PRODUCTOS -->
         <div class="row g-4" id="contenedor-productos">
-            <div class="col-12 text-center py-5">
-                <div class="spinner-border text-warning" role="status">
-                    <span class="visually-hidden">Cargando catálogo...</span>
-                </div>
-                <p class="mt-2 text-muted">Cargando la colección de MÁS MOLDEO...</p>
-            </div>
+            <!-- Se llena dinámicamente -->
         </div>
     </div>
 
@@ -110,13 +116,20 @@
     <!-- JS de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- PROGRAMACIÓN DE LA BASE DE DATOS Y LÓGICA -->
+    <!-- LÓGICA Y CONEXIÓN A GOOGLE SHEETS -->
     <script>
         const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR5botmm1BIxNPXipFUBPSrVhO7QO53qI99fvk3cG90VWyq91KcC5oeApL8b58eLWqQ2husNsXB6C92/pub?output=csv";
         const WHATSAPP_NUMERO = "59162165899"; 
 
         let productosGlobales = []; 
         let productosFiltrados = []; 
+
+        function ocultarLoader() {
+            const loader = document.getElementById('loader-screen');
+            if (loader) {
+                loader.classList.add('hidden');
+            }
+        }
 
         function parseCSV(text) {
             const lineas = text.split("\n");
@@ -155,11 +168,14 @@
             } catch (error) {
                 console.error("Error cargando la base de datos:", error);
                 document.getElementById('contenedor-productos').innerHTML = `
-                    <div class="col-12 text-center text-danger">
+                    <div class="col-12 text-center text-danger py-4">
                         <p class="fs-5 fw-bold">No pudimos conectar con la base de datos de fajas.</p>
-                        <p class="text-muted">Por favor, revisa tu conexión o el enlace de Google Sheets.</p>
+                        <p class="text-muted">Por favor, revisa tu conexión a internet.</p>
                     </div>
                 `;
+            } finally {
+                // Se oculta la pantalla de carga sin importar si funcionó o falló
+                ocultarLoader();
             }
         }
 
@@ -181,7 +197,6 @@
             });
         }
 
-        // Renderizado directo de TODOS los productos pertenecientes a la categoría seleccionada
         function renderizarProductos() {
             const contenedor = document.getElementById('contenedor-productos');
             contenedor.innerHTML = "";
@@ -209,7 +224,6 @@
 
                 const nombreEscapado = p.Nombre.replace(/"/g, '&quot;').replace(/'/g, "\\'");
 
-                // Incluye loading="lazy" para maximizar la velocidad en celulares
                 const tarjetaHTML = `
                     <div class="col-12 col-md-6 col-lg-4 producto-item">
                         <div class="card h-100 card-producto shadow-sm">
@@ -324,11 +338,8 @@
             renderizarProductos();
         }
 
-        // Creación inteligente de estrellas: Se desactiva automáticamente en pantallas < 768px
         function crearEstrellas() {
-            if (window.innerWidth < 768) {
-                return; 
-            }
+            if (window.innerWidth < 768) return; 
 
             const contenedor = document.getElementById('stars-container');
             if(!contenedor) return;
