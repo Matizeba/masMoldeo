@@ -216,7 +216,7 @@ body {
 }
 
 /* ==========================================================================
-   TARJETAS DE PRODUCTO (CORREGIDO Y ALINEADO)
+   TARJETAS DE PRODUCTO
    ========================================================================== */
 #catalogo {
     background-color: transparent !important;
@@ -243,7 +243,7 @@ body {
     box-shadow: 0 15px 35px rgba(197, 160, 89, 0.18) !important;
 }
 
-/* CONTENEDOR Y IMAGEN CON ALTURA UNIFORME RIGUROSA */
+/* CONTENEDOR E IMAGEN CON ALTURA UNIFORME RIGUROSA */
 .img-wrapper {
     position: relative;
     width: 100%;
@@ -257,7 +257,7 @@ body {
 .img-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: cover !important; /* Recorta perfectamente sin deformar */
+    object-fit: cover !important;
     object-position: center;
     transition: transform 0.5s ease;
 }
@@ -325,7 +325,7 @@ body {
 }
 
 /* ==========================================================================
-   FONDO Y MODAL (CORREGIDO Y REFORZADO)
+   FONDO Y MODAL (REFORZADO Y OPTIMIZADO PARA MÓVIL)
    ========================================================================== */
 #stars-container {
     position: fixed;
@@ -365,28 +365,31 @@ body {
     overflow: hidden !important;
 }
 
-/* Ajustes stricts para evitar desbordes en carrusel */
+/* CARRUSEL Y NAVEGACIÓN EN MODAL */
 #carouselModal {
     position: relative;
     width: 100%;
     overflow: hidden !important;
     background-color: #0d0e12;
+    touch-action: pan-y; /* Permite scroll vertical fluido sin bloquear el swipe */
 }
 
 #carouselModal .carousel-inner {
     position: relative;
     width: 100%;
-    overflow: hidden;
+    overflow: hidden !important;
+    display: flex;
 }
 
 #carouselModal .carousel-item {
-    transition: transform 0.4s ease-in-out;
+    transition: transform 0.3s ease-in-out !important;
     text-align: center;
     background-color: #0d0e12;
+    margin-right: 0 !important;
 }
 
 .modal-img-preview {
-    max-height: 55vh !important;
+    max-height: 52vh !important;
     width: 100% !important;
     object-fit: contain !important;
     display: block;
@@ -414,7 +417,7 @@ body {
 }
 
 /* ==========================================================================
-   LOADER PREMIUM (CORREGIDO PARA PC Y MOBILE)
+   LOADER PREMIUM
    ========================================================================== */
 #loader-screen {
     position: fixed;
@@ -543,6 +546,6 @@ body {
     }
 
     .modal-img-preview {
-        max-height: 48vh !important; /* Altura optimizada para móviles para no desplazar el footer */
+        max-height: 45vh !important; /* Mantiene la imagen y los botones 100% dentro de la pantalla del celular */
     }
 }
