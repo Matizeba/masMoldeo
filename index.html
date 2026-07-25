@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MÁS MOLDEO - Fajas y Ropa de Moldeo</title>
-    
+
     <!-- PRECARGA DE RECURSOS CRÍTICOS -->
     <link rel="preload" href="img/logo.jpg" as="image">
-    
+
     <!-- CSS de Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Estilos Personalizados con Versionado para romper Caché (?v=1.3) -->
     <link rel="stylesheet" href="css/styles.css?v=1.3">
-    
+
     <!-- Iconos de Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
+
 <body>
 
     <!-- PANTALLA DE CARGA (LOADER SCREEN) -->
+    <!-- PANTALLA DE CARGA PREMIUM (MÁS MOLDEO) -->
     <div id="loader-screen">
-        <div class="loader-content text-center">
-            <div class="spinner-border text-warning mb-3" style="width: 3.5rem; height: 3.5rem;" role="status">
-                <span class="visually-hidden">Cargando...</span>
+        <div class="loader-card">
+            <div class="brand-ring-container">
+                <div class="brand-ring"></div>
+                <img src="img/logo.jpg" alt="MM" class="loader-logo" onerror="this.style.display='none'">
             </div>
-            <h4 class="brand-text text-gold fw-bold mb-1">MÁS MOLDEO</h4>
-            <p class="text-light-muted small mb-0">Cargando catálogo exclusivo...</p>
+            <h4 class="brand-title">MÁS MOLDEO</h4>
+            <p class="brand-subtitle">EXCLUSIVIDAD & ELEGANCIA</p>
+            <div class="loader-bar-bg">
+                <div class="loader-bar-fill"></div>
+            </div>
         </div>
     </div>
 
@@ -40,7 +47,9 @@
                 <img src="img/logo.jpg" alt="MM" class="navbar-logo-mini me-2" onerror="this.style.display='none'">
                 <span class="brand-text">MÁS MOLDEO</span>
             </a>
-            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="toggler-icon-bar"></span>
                 <span class="toggler-icon-bar"></span>
                 <span class="toggler-icon-bar"></span>
@@ -59,15 +68,18 @@
         <div class="container">
             <div class="row align-items-center text-center text-md-start g-4">
                 <div class="col-12 col-md-5 col-lg-4 d-flex justify-content-center">
-                    <img src="img/logo.jpg" alt="Logo MÁS MOLDEO" class="logo-hero-compact img-fluid" onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=400'">
+                    <img src="img/logo.jpg" alt="Logo MÁS MOLDEO" class="logo-hero-compact img-fluid"
+                        onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=400'">
                 </div>
                 <div class="col-12 col-md-7 col-lg-8 ps-md-4">
                     <h1 class="hero-title fw-bold text-white mb-2">MÁS MOLDEO</h1>
                     <p class="hero-subtitle text-uppercase text-gold tracking-wide mb-3">Fajas y Ropa de Moldeo</p>
                     <p class="hero-desc lead text-light-muted mb-4 mx-auto mx-md-0">
-                       "Explora nuestro catálogo exclusivo con prendas diseñadas para moldear tu figura. ¡Encuentra tu estilo ideal hoy mismo!"
+                        "Explora nuestro catálogo exclusivo con prendas diseñadas para moldear tu figura. ¡Encuentra tu
+                        estilo ideal hoy mismo!"
                     </p>
-                    <a href="#catalogo" class="btn btn-gold rounded-pill px-4 py-2 text-uppercase fw-semibold">Ver Catálogo</a>
+                    <a href="#catalogo" class="btn btn-gold rounded-pill px-4 py-2 text-uppercase fw-semibold">Ver
+                        Catálogo</a>
                 </div>
             </div>
         </div>
@@ -99,7 +111,8 @@
             <div class="modal-content bg-dark text-white border-gold-modal">
                 <div class="modal-header border-0">
                     <h5 class="modal-title fw-bold" id="modalProductoNombre">Nombre del Producto</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body text-center p-0" id="modalBodyContenedor">
                     <img id="modalProductoImagen" src="" class="img-fluid modal-img-preview" alt="Vista del producto">
@@ -107,7 +120,8 @@
                 <div class="modal-footer border-0 d-flex flex-column align-items-center pb-4">
                     <p id="modalProductoDescripcion" class="text-center text-light-muted px-3 mb-3">Descripción</p>
                     <p id="modalProductoPrecio" class="fs-3 fw-bold text-warning mb-3">0 Bs.</p>
-                    <a id="modalWhatsAppLink" href="#" target="_blank" class="btn btn-dark-gold rounded-pill px-5 py-2 text-uppercase fw-bold">Pedir por WhatsApp</a>
+                    <a id="modalWhatsAppLink" href="#" target="_blank"
+                        class="btn btn-dark-gold rounded-pill px-5 py-2 text-uppercase fw-bold">Pedir por WhatsApp</a>
                 </div>
             </div>
         </div>
@@ -119,10 +133,10 @@
     <!-- LÓGICA Y CONEXIÓN A GOOGLE SHEETS -->
     <script>
         const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR5botmm1BIxNPXipFUBPSrVhO7QO53qI99fvk3cG90VWyq91KcC5oeApL8b58eLWqQ2husNsXB6C92/pub?output=csv";
-        const WHATSAPP_NUMERO = "59162165899"; 
+        const WHATSAPP_NUMERO = "59162165899";
 
-        let productosGlobales = []; 
-        let productosFiltrados = []; 
+        let productosGlobales = [];
+        let productosFiltrados = [];
 
         function ocultarLoader() {
             const loader = document.getElementById('loader-screen');
@@ -137,15 +151,15 @@
             const resultados = [];
             for (let i = 1; i < lineas.length; i++) {
                 if (!lineas[i].trim()) continue;
-                
+
                 const valores = lineas[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                 let obj = {};
-                
+
                 headers.forEach((header, index) => {
                     let valor = valores[index] ? valores[index].replace(/^"|"$/g, '').trim() : '';
                     obj[header] = valor;
                 });
-                
+
                 if (obj.Nombre) {
                     resultados.push(obj);
                 }
@@ -153,28 +167,67 @@
             return resultados;
         }
 
+        // Función para precargar una imagen en memoria antes de mostrar la página
+        function precargarImagen(url) {
+            return new Promise((resolve) => {
+                if (!url || !url.startsWith('http')) {
+                    resolve();
+                    return;
+                }
+
+                const img = new Image();
+
+                // Tiempo límite de 4.5 segundos por foto para que la web nunca se congele
+                const timer = setTimeout(() => {
+                    resolve();
+                }, 4500);
+
+                img.onload = () => {
+                    clearTimeout(timer);
+                    resolve();
+                };
+
+                img.onerror = () => {
+                    clearTimeout(timer);
+                    resolve();
+                };
+
+                img.src = url;
+            });
+        }
+
         async function cargarCatalogo() {
             try {
-                const forzarFresco = new Date().getTime(); 
+                const forzarFresco = new Date().getTime();
                 const response = await fetch(`${SHEET_CSV_URL}&t=${forzarFresco}`);
                 const csvText = await response.text();
-                
+
                 productosGlobales = parseCSV(csvText);
-                productosFiltrados = [...productosGlobales]; 
-                
+                productosFiltrados = [...productosGlobales];
+
                 generarFiltros(productosGlobales);
-                renderizarProductos(); 
-                
+                renderizarProductos(); // Genera el HTML de las tarjetas
+
+                // 1. Extraemos las URLs de la primera imagen de cada producto
+                const promesasImagenes = productosGlobales.map(p => {
+                    const imagenesLista = p.Imagen ? p.Imagen.split(",") : [];
+                    const fotoUrl = imagenesLista[0] ? imagenesLista[0].trim() : '';
+                    return precargarImagen(fotoUrl);
+                });
+
+                // 2. ESPERAMOS A QUE TODAS LAS IMÁGENES SE DESCARGUEN POR COMPLETO
+                await Promise.all(promesasImagenes);
+
             } catch (error) {
                 console.error("Error cargando la base de datos:", error);
                 document.getElementById('contenedor-productos').innerHTML = `
-                    <div class="col-12 text-center text-danger py-4">
-                        <p class="fs-5 fw-bold">No pudimos conectar con la base de datos de fajas.</p>
-                        <p class="text-muted">Por favor, revisa tu conexión a internet.</p>
-                    </div>
-                `;
+            <div class="col-12 text-center text-danger py-4">
+                <p class="fs-5 fw-bold">No pudimos conectar con la base de datos de fajas.</p>
+                <p class="text-muted">Por favor, revisa tu conexión a internet.</p>
+            </div>
+        `;
             } finally {
-                // Se oculta la pantalla de carga sin importar si funcionó o falló
+                // 3. RECIÉN AQUÍ SE OCULTA EL LOADER (Cuando todo está 100% cargado)
                 ocultarLoader();
             }
         }
@@ -182,7 +235,7 @@
         function generarFiltros(productos) {
             const contenedor = document.getElementById('contenedor-filtros');
             const secciones = new Set();
-            
+
             productos.forEach(p => {
                 if (p.Seccion) secciones.add(p.Seccion.trim());
             });
@@ -208,17 +261,17 @@
 
             productosFiltrados.forEach((p) => {
                 const imagenesLista = p.Imagen ? p.Imagen.split(",") : [];
-                const fotoUrl = imagenesLista[0] && imagenesLista[0].trim().startsWith('http') 
-                    ? imagenesLista[0].trim() 
+                const fotoUrl = imagenesLista[0] && imagenesLista[0].trim().startsWith('http')
+                    ? imagenesLista[0].trim()
                     : 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=400';
-                
+
                 const mensajeWa = encodeURIComponent(`¡Hola MÁS MOLDEO! Me interesa recibir más información sobre la prenda: *${p.Nombre}* (Precio: ${p.Precio} Bs.).`);
                 const waLink = `https://wa.me/${WHATSAPP_NUMERO}?text=${mensajeWa}`;
 
                 const esAgotado = p.Estado && p.Estado.toLowerCase() === 'agotado';
                 const badgeTag = esAgotado ? '<div class="badge-tag bg-danger border-danger text-white">Agotado</div>' : `<div class="badge-tag">${p.Seccion}</div>`;
-                
-                const botonAccion = esAgotado 
+
+                const botonAccion = esAgotado
                     ? `<button class="btn btn-secondary w-100 rounded-pill py-2 text-uppercase fw-bold" disabled>Temporalmente Agotado</button>`
                     : `<a href="${waLink}" target="_blank" class="btn btn-dark-gold w-100 rounded-pill py-2 text-uppercase fw-bold">Comprar Ahora</a>`;
 
@@ -257,18 +310,18 @@
             document.getElementById('modalProductoNombre').textContent = p.Nombre;
             document.getElementById('modalProductoDescripcion').textContent = p.Descripcion;
             document.getElementById('modalProductoPrecio').textContent = `${p.Precio} Bs.`;
-            
+
             const imagenesLista = p.Imagen ? p.Imagen.split(",") : [];
             const contenedorImagen = document.getElementById('modalBodyContenedor');
-            
+
             if (imagenesLista.length > 1) {
                 let indicadores = '';
                 let diapositivas = '';
                 let contadorValidas = 0;
-                
+
                 imagenesLista.forEach((url) => {
                     const linkLimpio = url.trim();
-                    if(linkLimpio.startsWith('http')) {
+                    if (linkLimpio.startsWith('http')) {
                         indicadores += `<button type="button" data-bs-target="#carouselModal" data-bs-slide-to="${contadorValidas}" class="${contadorValidas === 0 ? 'active' : ''}" aria-current="${contadorValidas === 0 ? 'true' : 'false'}"></button>`;
                         diapositivas += `
                             <div class="carousel-item ${contadorValidas === 0 ? 'active' : ''}">
@@ -278,7 +331,7 @@
                         contadorValidas++;
                     }
                 });
-                
+
                 contenedorImagen.innerHTML = `
                     <div id="carouselModal" class="carousel slide" data-bs-ride="false">
                         <div class="carousel-indicators">${indicadores}</div>
@@ -294,19 +347,19 @@
                     </div>
                 `;
             } else {
-                const fotoUnica = imagenesLista[0] && imagenesLista[0].trim().startsWith('http') 
-                    ? imagenesLista[0].trim() 
+                const fotoUnica = imagenesLista[0] && imagenesLista[0].trim().startsWith('http')
+                    ? imagenesLista[0].trim()
                     : 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=400';
-                
+
                 contenedorImagen.innerHTML = `<img id="modalProductoImagen" src="${fotoUnica}" class="img-fluid modal-img-preview" alt="Vista del producto" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=400'">`;
             }
-            
+
             const mensajeWa = encodeURIComponent(`¡Hola MÁS MOLDEO! Me interesa recibir más información sobre la prenda: *${p.Nombre}* (Precio: ${p.Precio} Bs.).`);
             const waLink = `https://wa.me/${WHATSAPP_NUMERO}?text=${mensajeWa}`;
-            
+
             const btnWa = document.getElementById('modalWhatsAppLink');
             const esAgotado = p.Estado && p.Estado.toLowerCase() === 'agotado';
-            
+
             if (esAgotado) {
                 btnWa.textContent = "Temporalmente Agotado";
                 btnWa.className = "btn btn-secondary rounded-pill px-5 py-2 text-uppercase fw-bold disabled";
@@ -324,7 +377,7 @@
         function filtrarProductos(seccionSeleccionada, elemento) {
             const botones = document.querySelectorAll('.btn-filtro');
             botones.forEach(btn => btn.classList.remove('active'));
-            
+
             if (elemento) {
                 elemento.classList.add('active');
             }
@@ -334,28 +387,28 @@
             } else {
                 productosFiltrados = productosGlobales.filter(p => p.Seccion && p.Seccion.trim() === seccionSeleccionada);
             }
-            
+
             renderizarProductos();
         }
 
         function crearEstrellas() {
-            if (window.innerWidth < 768) return; 
+            if (window.innerWidth < 768) return;
 
             const contenedor = document.getElementById('stars-container');
-            if(!contenedor) return;
+            if (!contenedor) return;
             const numeroEstrellas = 80;
 
             for (let i = 0; i < numeroEstrellas; i++) {
                 const estrella = document.createElement('div');
                 estrella.className = 'star';
-                
+
                 const dimensiones = Math.random() * 3 + 1;
                 estrella.style.width = `${dimensiones}px`;
                 estrella.style.height = `${dimensiones}px`;
-                
+
                 estrella.style.left = `${Math.random() * 100}vw`;
                 estrella.style.top = `${Math.random() * 100}vh`;
-                
+
                 estrella.style.setProperty('--duration', `${Math.random() * 4 + 2}s`);
                 estrella.style.setProperty('--max-opacity', Math.random() * 0.7 + 0.3);
                 estrella.style.animationDelay = `${Math.random() * 5}s`;
@@ -370,4 +423,5 @@
         });
     </script>
 </body>
+
 </html>

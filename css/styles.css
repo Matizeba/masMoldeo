@@ -402,7 +402,7 @@ body {
 }
 
 /* ==========================================================================
-   PANTALLA DE CARGA (LOADER SCREEN)
+   LOADER PREMIUM GLASSMORPHISM
    ========================================================================== */
 #loader-screen {
     position: fixed;
@@ -410,12 +410,12 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #090a0f;
+    background: radial-gradient(circle at center, #10121a 0%, #050609 100%);
     z-index: 99999;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s ease;
 }
 
 #loader-screen.hidden {
@@ -424,6 +424,98 @@ body {
     pointer-events: none;
 }
 
-.text-gold {
-    color: var(--color-oro) !important;
+.loader-card {
+    background: rgba(20, 22, 30, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(197, 160, 89, 0.25);
+    padding: 35px 40px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(197, 160, 89, 0.1);
+    max-width: 320px;
+    width: 85%;
+}
+
+.brand-ring-container {
+    position: relative;
+    width: 85px;
+    height: 85px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.brand-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid rgba(197, 160, 89, 0.15);
+    border-top: 3px solid var(--color-oro-brillante, #e5c07b);
+    border-radius: 50%;
+    animation: spinRing 1.2s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+}
+
+.loader-logo {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--color-oro, #c5a059);
+}
+
+.brand-title {
+    color: var(--color-oro, #c5a059);
+    font-weight: 800;
+    letter-spacing: 3px;
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+
+.brand-subtitle {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.loader-bar-bg {
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loader-bar-fill {
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--color-oro, #c5a059), transparent);
+    position: absolute;
+    animation: loadingBar 1.5s infinite ease-in-out;
+}
+
+@keyframes spinRing {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes loadingBar {
+    0% { left: -40%; }
+    100% { left: 100%; }
+}
+
+/* EFECTO DE ESPERA PARA IMÁGENES QUE VAN CARGANDO EN SEGUNDO PLANO */
+.img-wrapper {
+    background: #151722 linear-gradient(90deg, #151722 0%, #1e2230 50%, #151722 100%);
+    background-size: 200% 100%;
+    animation: skeletonShimmer 1.5s infinite;
+}
+
+@keyframes skeletonShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
 }
